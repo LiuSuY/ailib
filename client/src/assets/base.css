@@ -1,0 +1,95 @@
+:root {
+  --w-textarea-bg-color: #fff;
+  --w-textarea-color: #333;
+  --w-textarea-border-color: #ccc;
+  --w-textarea-slight-border-color: #e8e8e8;
+  --w-textarea-slight-color: #d4d4d4;
+  --w-textarea-slight-bg-color: #f5f2f0;
+  --w-textarea-selected-border-color: #b4d5ff;
+  --w-textarea-handler-bg-color: #4290f7;
+  --w-toolbar-color: #595959;
+  --w-toolbar-bg-color: #fff;
+  --w-toolbar-active-color: #333;
+  --w-toolbar-active-bg-color: #f1f1f1;
+  --w-toolbar-disabled-color: #999;
+  --w-toolbar-border-color: #e8e8e8;
+  --w-modal-button-bg-color: #fafafa;
+  --w-modal-button-border-color: #d9d9d9;
+}
+body {
+  width: 100%;
+  height: auto !important;
+  font-size: 16px;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Ubuntu,
+    Cantarell,
+    Noto Sans,
+    sans-serif,
+    BlinkMacSystemFont,
+    Helvetica Neue,
+    Arial,
+    PingFang SC,
+    PingFang TC,
+    PingFang HK,
+    Microsoft Yahei,
+    Microsoft JhengHei;
+}
+
+blockquote,
+body,
+button,
+code,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+/* 滚动条优化 start */
+/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+}
+/* 滚动条优化 end */
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+  #hiddenInMobile {
+    display: none;
+  }
+}

@@ -23,6 +23,8 @@ const waterfallRef = ref();
 
 const waterfallItemRef = ref();
 
+const emits = defineEmits(['scroll']);
+
 
 
 const props = defineProps<{
@@ -32,10 +34,12 @@ const props = defineProps<{
 const waterfallList = ref();
 
 const handleWaterfall = (
-  columns = Math.floor(
-    waterfallRef.value.offsetWidth / waterfallItemRef.value[0].offsetWidth,
-  ),
+  column?: number
 ) => {
+  if(!waterfallItemRef.value || !waterfallItemRef.value[0]) return;
+  const columns = column || Math.floor(
+    waterfallRef.value.offsetWidth / waterfallItemRef.value[0].offsetWidth,
+  )
   let container = waterfallRef.value;
   let items = waterfallItemRef.value;
 
@@ -79,6 +83,7 @@ const handleScroll = () => {
   const bottomDistance =
     document.body.clientHeight - window.innerHeight - window.scrollY;
   if (bottomDistance <= 200) {
+    emits('scroll', 'ture')
     loading.value = true;
     setTimeout(() => {
       loading.value = false;
@@ -92,7 +97,7 @@ onUpdated(() => {
   waterfallList.value = props.list;
   setTimeout(() => {
     handleWaterfall();
-  },100)
+  }, 100)
 })
 
 onMounted(() => {

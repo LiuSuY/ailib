@@ -1,6 +1,6 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, ParseIntPipe, Query, Res } from '@nestjs/common';
 import { FileService } from './file.service';
-; import { Public } from 'src/auth/decorators/public.decorator';
+import { Public } from 'src/auth/decorators/public.decorator';
 import * as fs from 'fs'
 import { hostname } from 'os';
 
@@ -12,17 +12,19 @@ export class FileController {
 
   @Public()
   @Get('/list')
-  async list() {
-    try {
-      const data = await fs.readdirSync('./images')
-      let list = [];
-      data.forEach((item) => {
-        list.push({ url: `http://${hostname}:3000/images/${item}`})
-      })
-      return list;
-    } catch (error) {
-      return error;
-    }
-
+  async list(@Query('current', ParseIntPipe) current,
+    @Query('size', ParseIntPipe) size,
+  ) {
+    return this.fileService.findAll(current,size)
+    // try {
+    //   const data = await fs.readdirSync('./images')
+    //   let list = [];
+    //   data.forEach((item) => {
+    //     list.push({ url: `http://${hostname}:3000/images/${item}`})
+    //   })
+    //   return list;
+    // } catch (error) {
+    //   return error;
+    // }
   }
 }

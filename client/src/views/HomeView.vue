@@ -3,22 +3,51 @@ import Header from "@/components/Header/index.vue";
 import Filter from "@/components/Filter/index.vue";
 import WaterFall from "@/components/WaterFall/index.vue";
 import Footer from "@/components/Footer/index.vue";
+import { debounce } from "lodash";
 import { useRequest } from "alova";
-import { getList } from "@/api/list";
-import { ref } from "vue";
+import { getList, type IData } from "@/api/list";
+import { onMounted, reactive, ref } from "vue";
 
 // 模拟列表数据
 const list = ref();
 
-const { onError, onSuccess } = useRequest(getList());
+const pages = reactive({
+  current: 1,
+  size: 10
+})
+
+const { onError, onSuccess, send: GetScroll } = useRequest(pages => getList(pages), {
+  immediate: false,
+  initialData: {
+    data: [],
+    size: 10,
+    total: 0,
+    current: 1
+  }
+});
 
 onSuccess((res) => {
   const { data } = res;
-  list.value = data.data;
+  let result: Array<{ url: string }> = data.data.data
+  if (list.value) {
+    result = [...list.value, ...result,];
+  }
+  list.value = result;
+
 });
 onError((res) => {
   console.log(res)
 });
+
+const handleScroll = debounce(() => {
+  pages.current = pages.current += 1;
+  GetScroll(pages)
+}, 200)
+
+onMounted(() => {
+  GetScroll(pages)
+})
+
 
 
 </script>
@@ -31,7 +60,7 @@ onError((res) => {
       <div class="main-groupLeft" id="scrollpart">
         <Filter></Filter>
         <div class="relative">
-          <WaterFall :list="list"></WaterFall>
+          <WaterFall :list="list" @scroll="handleScroll"></WaterFall>
         </div>
       </div>
       <div class="BackTop_backToTop">

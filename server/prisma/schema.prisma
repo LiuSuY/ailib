@@ -29,3 +29,10 @@ model UserInfo {
   userId    Int     // 这是一个外键，用来连接 User
   user      User    @relation(fields: [userId], references: [id]) // 这里定义了 UserInfo 属于 User 的关系
 }
+
+
+model FileList {
+  id        Int     @default(autoincrement()) @id
+  url       String
+  title     String
+}

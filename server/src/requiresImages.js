@@ -1,17 +1,13 @@
 const puppeteer = require('puppeteer');
-// const cheerio = require('cheerio');
+const cheerio = require('cheerio');
 // const request = require('request')
 const http = require('http')
 const https = require('https')
 const fs = require('fs');
 const path = require('path')
 
-// todo 加载张数限制
-// 文件名处理优化
-
 const url = 'https://www.liblib.ai/';
 
-const imgDir = ext => path.resolve(__dirname, 'images', Date.now() + '.' + ext);
 
 (async () => {
     // Launch the browser and open a new blank page
@@ -26,46 +22,56 @@ const imgDir = ext => path.resolve(__dirname, 'images', Date.now() + '.' + ext);
     });
 
     await page.setViewport({
-        width: 1600,
-        height: 1000
+        width: 1920,
+        height: 1080
     })
     await page.waitForSelector('div.mantine-AppShell-root');
 
     await page.waitForSelector('main.mantine-AppShell-main');
 
 
-    let imgs = null;
-    const loadMore = async () => {
-        let timer = true;
-        await page.evaluate(async () => {
-            await new Promise(async (resolve, reject) => {
-                let i = 1;
-                timer = setInterval(async () => {
-                    if (i == 1000) {
-                        resolve(i);
-                        clearInterval(timer);
-                    }
-                    window.scrollTo(0, i * 10);
-                    i++;
-                }, 100);
-            })
+    let imgs = [];
+    let num = 0;
+
+    function wait(ms) {
+        return new Promise((resolve) => setTimeout(() => resolve(), ms));
+    }
+    async function loadMore(page) {
+        return new Promise(async (resolve, reject) => {
+            const bodyHandle = await page.$("body");
+            const { height } = await bodyHandle.boundingBox();
+            await bodyHandle.dispose();
+            const viewportHeight = page.viewport().height;
+            let viewportIncr = 0;
+            while (viewportIncr + viewportHeight < height) {
+                await page.evaluate((_viewportHeight) => {
+                    window.scrollBy(0, _viewportHeight);
+                }, viewportHeight);
+                await wait(800);
+                viewportIncr = viewportIncr + viewportHeight;
+            }
+            
+            await page.waitForSelector('main.mantine-AppShell-main #liblib-home-models-feed-wrapper div[role="gridcell"] img.relative');
+            temp = await page.$$eval('main.mantine-AppShell-main #liblib-home-models-feed-wrapper div[role="gridcell"] img.relative', els => Array.from(els).map(el => el.src));
+            imgs = [...imgs, ...temp]
+            resolve(temp.length);
         })
     }
-    // do {
-    await loadMore();
 
-    await page.waitForSelector('main.mantine-AppShell-main div[role="gridcell"] a img');
-    imgs = await page.$$eval('main.mantine-AppShell-main div[role="gridcell"] a img', els => Array.from(els).map(el => el.src));
-    // } while (imgs.length >= 100)
-    // 一次性多加加載几張
+    while (num <= 150) {
+        num += await loadMore(page);
+    }
+
+
+    
     const fileNames = await imgs.map(async (item) => {
         const itemShadow = item;
-        if (item.indexOf('data:image/png;base64') != -1) {
-            return;
-        }
+       
         let fileName = item.substring(item.indexOf('image/') + 6, item.indexOf('?image_process'));
+        console.log(fileName)
         fileName = fileName.replace('png', 'webp').replace('jpg', 'webp').replace('jpeg', 'webp');
-        if (fileName == '?image_process=format,webp&x-oss-process=image/' || fileName == 'https' || fileName == 'http:') {
+        console.log(fileName, '\n', itemShadow, '222')
+        if (fileName == '?image_process=format,webp&x-oss-process=image/') {
             return
         }
 

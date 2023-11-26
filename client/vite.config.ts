@@ -4,7 +4,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import UnoCSS from "unocss/vite";
-import { presetUno, presetAttributify, presetIcons } from "unocss";
+import { presetUno, presetAttributify, presetIcons, presetMini } from "unocss";
 
 const mode = process.env.MODE || "development";
 const env = loadEnv(mode, process.cwd());
@@ -17,7 +17,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     UnoCSS({
-      presets: [presetUno(), presetAttributify(), presetIcons()],
+      presets: [presetMini(),presetUno(), presetAttributify(), presetIcons({})],
     }),
   ],
   resolve: {

@@ -1,0 +1,34 @@
+:root {
+    --color-background: #fff;
+    --color-text: #333;
+    --color-background-secondary: #f4f5f9;
+    --mantine-header-height: 3.125rem;
+}
+
+@media (min-width: 48em) {
+    :root {
+        --mantine-navbar-width: 13.75rem;
+    }
+}
+
+
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb
+}
+
+
+ol,
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+a {
+    color: rgb(170, 170, 170);
+    text-decoration: none;
+}

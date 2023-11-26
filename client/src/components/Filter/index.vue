@@ -140,8 +140,6 @@ const handleTag = (tag: string) => {
   white-space: nowrap;
 }
 
-.filter_container {
-}
 
 .filter_body {
   position: relative;

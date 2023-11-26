@@ -526,7 +526,15 @@
   resolved "https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-2.0.1.tgz#e5211452df060fa8522b55c7b3c0c4d1981cb044"
   integrity sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==
 
-"@iconify/types@^2.0.0":
+"@iconify/json@^2.2.146":
+  version "2.2.146"
+  resolved "https://registry.npmmirror.com/@iconify/json/-/json-2.2.146.tgz#04798ec87e4bfd237e27e35ad0c397e1e764ec52"
+  integrity sha512-Z+kOCjsQSivgphCsaHM7Qg/vjGAzY1QXNREv2JllTh3Wn68LcDS4cie+nox2pfrnF/41B4UM6OI2CrZ00AU2Sg==
+  dependencies:
+    "@iconify/types" "*"
+    pathe "^1.1.0"
+
+"@iconify/types@*", "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmmirror.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
@@ -892,6 +900,11 @@
   resolved "https://registry.npmmirror.com/@unocss/core/-/core-0.56.5.tgz#5c3caf24dd0d13e359aa71112d0487b685cb165a"
   integrity sha512-fx5VhOjSHn0HdV2D34pEwFMAHJcJQRTCp1xEE4GzxY1irXzaa+m2aYf5PZjmDxehiOC16IH7TO9FOWANXk1E0w==
 
+"@unocss/core@0.57.7", "@unocss/core@^0.57.7":
+  version "0.57.7"
+  resolved "https://registry.npmmirror.com/@unocss/core/-/core-0.57.7.tgz#4fe79e3d7327d5f25de0f82b80567fd8f5f82602"
+  integrity sha512-1d36M0CV3yC80J0pqOa5rH1BX6g2iZdtKmIb3oSBN4AWnMCSrrJEPBrUikyMq2TEQTrYWJIVDzv5A9hBUat3TA==
+
 "@unocss/eslint-config@^0.56.4":
   version "0.56.5"
   resolved "https://registry.npmmirror.com/@unocss/eslint-config/-/eslint-config-0.56.5.tgz#a1605985af6b89006cfffafe0655609ddf1b272b"
@@ -916,6 +929,13 @@
   integrity sha512-p2pyzz/ONvc5CGcaB9OZvWE8qkRSgyuhaQqFQLdBFeUhveHC0CGP0iSnXwBgAFHWM7DJo4/JpWeZ+mBt0ogVLA==
   dependencies:
     "@unocss/core" "0.56.5"
+
+"@unocss/extractor-arbitrary-variants@0.57.7":
+  version "0.57.7"
+  resolved "https://registry.npmmirror.com/@unocss/extractor-arbitrary-variants/-/extractor-arbitrary-variants-0.57.7.tgz#04ee5d5a840e5cf6f0eba8c904124fb1442ab4fd"
+  integrity sha512-JdyhPlsgS0x4zoF8WYXDcusPcpU4ysE6Rkkit4a9+xUZEvg7vy7InH6PQ8dL8B9oY7pbxF7G6eFguUDpv9xx4Q==
+  dependencies:
+    "@unocss/core" "0.57.7"
 
 "@unocss/inspector@0.56.5":
   version "0.56.5"
@@ -963,6 +983,15 @@
     "@unocss/core" "0.56.5"
     "@unocss/extractor-arbitrary-variants" "0.56.5"
     "@unocss/rule-utils" "0.56.5"
+
+"@unocss/preset-mini@^0.57.7":
+  version "0.57.7"
+  resolved "https://registry.npmmirror.com/@unocss/preset-mini/-/preset-mini-0.57.7.tgz#08b801d5dd377b2056116c3c4568f3ab727f3a5b"
+  integrity sha512-YPmmh+ZIg4J7/nPMfvzD1tOfUFD+8KEFXX9ISRteooflYeosn2YytGW66d/sq97AZos9N630FJ//DvPD2wfGwA==
+  dependencies:
+    "@unocss/core" "0.57.7"
+    "@unocss/extractor-arbitrary-variants" "0.57.7"
+    "@unocss/rule-utils" "0.57.7"
 
 "@unocss/preset-tagify@0.56.5":
   version "0.56.5"
@@ -1017,6 +1046,14 @@
   integrity sha512-CXIGHCIC9B8WUl9KbbFMSZHcsIgfmI/+X0bjBv6xrgBVC1EQ2Acq4PYnJIbaRGBRAhl9wYjNL7Zq2UWOdowHAw==
   dependencies:
     "@unocss/core" "^0.56.5"
+
+"@unocss/rule-utils@0.57.7":
+  version "0.57.7"
+  resolved "https://registry.npmmirror.com/@unocss/rule-utils/-/rule-utils-0.57.7.tgz#042e4ebea471242577fdc4b2a0613e382ae9d79a"
+  integrity sha512-gLqbKTIetvRynLkhonu1znr+bmWnw+Cl3dFVNgZPGjiqGHd78PGS0gXQKvzuyN0iO2ADub1A7GlCWs826iEHjA==
+  dependencies:
+    "@unocss/core" "^0.57.7"
+    magic-string "^0.30.5"
 
 "@unocss/scope@0.56.5":
   version "0.56.5"

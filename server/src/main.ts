@@ -8,7 +8,6 @@ import { Response } from './common/response';
 import helmet from 'helmet';
 import * as session from 'express-session';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -24,7 +23,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
 
-  app.useStaticAssets("images", { prefix: '/images'})
+  app.useStaticAssets("images", { prefix: '/images' })
 
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new HttpFilter())
@@ -36,11 +35,10 @@ async function bootstrap() {
       rolling: true,
     })
   )
-  // app.enableCors({
-  //   origin: '*', // 允许来自这个域的请求
-  // });
 
   await app.listen(3000);
+
+ 
   log(`this is application runing at ${await app.getUrl()}`)
 }
 bootstrap();

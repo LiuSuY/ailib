@@ -1,7 +1,7 @@
 import "virtual:uno.css";
 import "@unocss/reset/normalize.css";
 import "ant-design-vue/dist/reset.css";
-import "./assets/main.css";
+import "./assets/styles/main.css";
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import Antd from "ant-design-vue";

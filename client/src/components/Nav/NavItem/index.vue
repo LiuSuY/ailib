@@ -1,18 +1,27 @@
 <script lang="ts" setup>
-
+const { border } = defineProps<{ border?: 'none' | 'dashed' | 'solid' | 'dotted' | 'double' | 'ridge' | 'inset' | 'groove' }>()
+const getBorderStyle = () => {
+    return `border: 1px ${border} var(--color-border1)`
+}
 </script>
 
 <template>
-    <li class="item-box">
+    <li class="item-box w-100% " :style="getBorderStyle()">
         <div class="item-inner">
             <i class="item-arrow"></i>
-            <div class="flex items-center">
-                <slot name="icon" v-if="$slots.icon"></slot>
-
+            <div class="flex items-center ">
+                <div class="icon-active">
+                    <slot name="icon" v-if="$slots.icon"></slot>
+                </div>
                 <slot name="text" v-if="$slots.text"></slot>
-                <span class="font-medium text-sm">
+                <span v-else class="font-medium text-sm">
                     <slot>
                     </slot>
+                </span>
+            </div>
+            <div class="pt-[2px] pl-[26px] leading-none">
+                <span class="font-normal text-xs text-gray-400">
+                    <slot name="subTitle"></slot>
                 </span>
             </div>
         </div>
@@ -29,8 +38,11 @@
     }
 
     &.active {
-        background-color: var(--color-background-secondary);
-        color: var(--color-text);
+        .icon-active {
+            display: inline-flex;
+            color: #2d28ff;
+        }
+
     }
 }
 
@@ -42,6 +54,7 @@
 }
 
 .active {
+
     .item-arrow {
         position: absolute;
         left: -17px;
@@ -57,12 +70,11 @@
         background-image: url('../images/active.png');
     }
 
-
-    .icon-active {
-        background-image: linear-gradient(90deg, #2d28ff, #1a7dff);
-    }
 }
 
+.icon-active {
+    display: inline-flex;
+}
 
 
 

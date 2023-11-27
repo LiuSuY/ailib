@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import NavItem from '../NavItem/index.vue';
-
+import NavTitle from '../NavTitle/index.vue';
 const listIndex = ref(1);
 
 const handleSwitch = (val: number) => {
@@ -13,9 +13,9 @@ const handleSwitch = (val: number) => {
   <div class="mantine-top w-220px">
     <div class="flex w-full flex-col">
       <div class="px-4">
-        <div class="px-3 pt-4 leading-none">
-          <span class="text-xs font-normal text-gray-400">探索</span>
-        </div>
+        <NavTitle>
+          探索
+        </NavTitle>
         <ul class="py-4 space-y-2">
           <NavItem :class="listIndex == 1 ? 'active' : ''" @click="handleSwitch(1)">
             <template #icon>
@@ -25,12 +25,32 @@ const handleSwitch = (val: number) => {
           </NavItem>
           <NavItem :class="listIndex == 2 ? 'active' : ''" @click="handleSwitch(2)">
             <template #icon>
-              <span class="i-tabler:home mr-8px text-18px"></span>
+              <span class="i-lets-icons:lamp mr-8px text-18px"></span>
             </template>
             作品灵感
           </NavItem>
         </ul>
         <div class="h-[1px] border-b border-gray-100 dark:border-[#ffffff]/5"></div>
+        <NavTitle>
+          创作
+        </NavTitle>
+        <ul class="py-4 space-y-2">
+          <NavItem border="dashed">
+            <template #icon>
+              <span class="i-fluent:draw-image-20-regular mr-8px text-18px"></span>
+            </template>
+            在线生图
+            <template #subTitle>
+              Web UI
+            </template>
+          </NavItem>
+          <NavItem border="dashed">
+            <template #icon>
+              <span class="i-ph:hexagon-thin mr-8px text-18px"></span>
+            </template>
+            训练我和LoRA
+          </NavItem>
+        </ul>
       </div>
     </div>
   </div>

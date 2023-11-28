@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import NavItem from '../NavItem/index.vue';
+const dark = ref<boolean>(false);
 </script>
 
 <template>
@@ -10,6 +12,12 @@ import NavItem from '../NavItem/index.vue';
           <span class="i-tdesign:user mr-8px"></span>
         </template>
         个人中心
+      </NavItem>
+      <NavItem>
+        <template #icon>
+          <span class="i-line-md:moon-loop mr-8px"></span>
+        </template>
+        深色模式 <a-switch class="ml-2 w-35px" size="small" v-model:checked="dark"></a-switch>
       </NavItem>
     </ul>
     <div class="py-6">

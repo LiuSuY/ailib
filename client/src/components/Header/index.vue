@@ -6,7 +6,7 @@ import Quit from "./components/Quit.vue";
 import UploadMy from "./components/UploadMy.vue";
 import Login from "./components/Login.vue";
 import { useUserStore } from "@/stores/modules/user";
-
+import { PlusCircleOutlined } from '@ant-design/icons-vue';
 
 const userStore = useUserStore();
 
@@ -98,16 +98,36 @@ const messList = reactive([
 </script>
 <template>
   <div class="Header-root flex items-center px-16px" id="widthChangeMobile">
-    <div class="Header-left flex">
+    <div class="Header-left flex flex-1 mr-0.875rem">
       <div class="logo-wrapper flex flex-shrink-0 mr-2rem">
         <span @click="handleToggle" class="sidebarToggle w-32px h-32px mr-16px line-height-32px">
           <i :class="foundation ? 'i-foundation:align-left' : 'i-foundation:align-right'" class="inline-block" />
         </span>
         <a href="/" class="icon_logo"></a>
       </div>
+      <form class="searchForm">
+        <div class="relative">
+          <input
+            class="searchInput outline-none hover:!border-[#dfe1ec] focus:border-[#dfe1ec] dark:hover:!border-[rgba(255,255,255,.1)] dark:focus:!border-[rgba(255,255,255,.1)]"
+            placeholder="搜索模型/图片/用户名寻找灵感" type="text">
+          <div class="rightSection">
+            <div class="px-20px searchIconWrapper">
+              <span class="i-carbon:search text-18px color-#888 hover:color-#666"></span>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="Header-right flex">
-      
+    <div class="Header-right flex items-center justify-end">
+      <a-button class="!bg-[rgb(236,236,236)] ml-12px" type="text">
+        <template #icon>
+          <PlusCircleOutlined />
+        </template>
+        发布
+      </a-button>
+      <span class="ml-12px">
+        <a-button class="!bg-[rgb(236,236,236)]" type="text">登录/注册</a-button>
+      </span>
     </div>
     <Quit ref="quitRef"></Quit>
     <UploadMy ref="uploadMyRef"></UploadMy>
@@ -149,6 +169,66 @@ const messList = reactive([
   justify-content: center;
   cursor: pointer;
   transform: rotate(0deg);
+}
+
+.searchForm {
+  max-width: 570px;
+  width: 430px;
+  opacity: 0;
+  animation: fade-in .2s ease-in forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.searchInput {
+  padding-left: 12px;
+  padding-right: 100px;
+  height: 36px;
+  border-color: transparent;
+  background-color: var(--color-lighter);
+  color: var(--color-modal-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: calc(2.125rem);
+  appearance: none;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  width: 100%;
+  display: block;
+  text-align: left;
+  border: 0.0625rem solid transparent;
+  min-height: 2.25rem;
+  border-radius: 0.5rem;
+}
+
+.rightSection {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: auto;
+}
+
+.searchIconWrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
 }
 
 

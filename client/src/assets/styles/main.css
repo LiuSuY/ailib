@@ -4,6 +4,9 @@
     --color-border1: #d8dae9;
     --color-background-secondary: #f4f5f9;
     --mantine-header-height: 3.125rem;
+    --color-modal-text: #666;
+    --color-light: #ecedf5;
+    --color-lighter: #f1f2f8;
 }
 
 @media (min-width: 48em) {

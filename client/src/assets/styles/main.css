@@ -7,6 +7,10 @@
     --color-modal-text: #666;
     --color-light: #ecedf5;
     --color-lighter: #f1f2f8;
+    --color-border: #cccdd3;
+    --color-caption: #222;
+    --mantine-header-height: 3.125rem;
+    --mantine-navbar-width: 0rem;
 }
 
 @media (min-width: 48em) {

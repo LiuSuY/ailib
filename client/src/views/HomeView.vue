@@ -3,6 +3,7 @@ import Header from "@/components/Header/index.vue";
 import Filter from "@/components/Filter/index.vue";
 import WaterFall from "@/components/WaterFall/index.vue";
 import Nav from "@/components/Nav/index.vue";
+import Banner from '@/components/Banner/index.vue';
 </script>
 
 <template>
@@ -11,26 +12,12 @@ import Nav from "@/components/Nav/index.vue";
     <Nav></Nav>
     <main class="mantine-main">
 
-      <div class="main-container">
+      <div class="main-container" data-no-sidebar="false">
+        <Banner></Banner>
         <WaterFall></WaterFall>
       </div>
-      <!-- <Filter></Filter> -->
-      <!-- <div class="relative"> -->
-      <!--  -->
-      <!-- </div> -->
     </main>
   </div>
-  <!-- <main >
-    <div>
-      
-      <div class="main-groupLeft" id="scrollpart">
-       
-      </div>
-      <div class="BackTop_backToTop">
-        <a-back-top> </a-back-top>
-      </div>
-    </div>
-  </main> -->
 </template>
 
 <style lang="scss" scoped>
@@ -51,12 +38,43 @@ import Nav from "@/components/Nav/index.vue";
   padding: 1.25rem;
 }
 
+@media screen and (min-width: 1280px) {
+  .main-container {
+    min-width: 1040px
+  }
 
-.BackTop_backToTop {
-  position: fixed;
-  right: 72px;
-  bottom: 72px;
-  text-align: center;
-  cursor: pointer;
+  .main-container[data-no-sidebar=true] {
+    margin-left: 44px;
+    margin-right: 44px
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .main-container {
+    min-width: 1205px
+  }
+}
+
+@media screen and (min-width: 1737px) {
+  .main-container {
+    min-width: 1505px
+  }
+}
+
+@media screen and (min-width: 2034px) {
+  .main-container {
+    min-width: 1799px
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .main-container {
+    min-width: 2295px
+  }
+
+  .main-container[data-no-sidebar=true] {
+    margin-left: auto;
+    margin-right: auto
+  }
 }
 </style>
